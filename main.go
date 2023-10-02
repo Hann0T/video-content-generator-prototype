@@ -17,8 +17,8 @@ type OpenAiMessagePayload struct {
 }
 
 type OpenAIChatPayload struct {
-	Model    string `json:"model"`
-    Messages [2]*OpenAiMessagePayload `json:"messages"`
+	Model    string                   `json:"model"`
+	Messages [2]*OpenAiMessagePayload `json:"messages"`
 }
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 	}
 
 	gptKey := os.Getenv("OPENAI_API_KEY")
-    fmt.Println(gptKey)
+	fmt.Println(gptKey)
 
 	gptMessage := OpenAiMessagePayload{
 		Role:    "system",
@@ -62,8 +62,7 @@ func main() {
 
 	req.Header.Add("Authorization", "Bearer "+gptKey)
 	req.Header.Add("Accept", "application/json")
-    //req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-    req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Content-Type", "application/json")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
